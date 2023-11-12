@@ -1,1 +1,38 @@
 <!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>FatSecret API Data Fetch</h1>
+    <button id="fetchData">Fetch Test</button>
+    <pre id="apiResponse"></pre>
+
+    <script>
+    var request = require("request");
+    clientID = '6843239d6bdf4bf3b6beb6da61ebca82'
+    clientSecret = '9b78f9f6159642c6a5497c65f53ad548'
+
+    var options = {
+       method: 'POST',
+       url: 'https://oauth.fatsecret.com/connect/token',
+       method : 'POST',
+       auth : {
+          user : clientID,
+          password : clientSecret
+       },
+       headers: { 'content-type': 'application/x-www-form-urlencoded'},
+       form: {
+          'grant_type': 'client_credentials',
+          'scope' : 'basic'
+       },
+       json: true
+    };
+
+    request(options, function (error, response, body) {
+       if (error) throw new Error(error);
+       console.log(body);
+    });
+    </script>
+</body>
+</html>
