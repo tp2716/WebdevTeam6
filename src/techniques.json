@@ -1,0 +1,63 @@
+{
+  "videos": [
+    {
+      "link": "https://www.youtube.com/embed/WALpdDTyj8o?si=hQyafJWmxAljLPTN&rel=0",
+      "caption": "How to make eggs"
+    },
+
+    {
+      "link": "https://www.youtube.com/embed/TDUcQhOzO1Q?si=kIzOebDenLA5_xzJ&rel=0",
+      "caption": "How to make chicken thighs"
+    },
+
+    {
+      "link": "https://www.youtube.com/embed/YrHpeEwk_-U?si=6E0hzia2JPh1yA1O&rel=0",
+      "caption": "Knife skills"
+    },
+
+    {
+      "link": "https://www.youtube.com/embed/BHcyuzXRqLs?si=jGcOTYQirwOnJQu6&rel=0",
+      "caption": "Gordon Ramsay tutorials"
+    },
+    
+    {
+      "link": "https://www.youtube.com/embed/N2G6YNtLUOg?si=zeiteJURWgnpbofa&rel=0",
+      "caption": "Gordon Ramsay tutorials (part 2)"
+    },
+
+    {
+      "link": "https://www.youtube.com/embed/Ya8m34WeDdg?si=UWAMBCIoCiHl9Gwt&rel=0",
+      "caption": "Seasoning basics"
+    },
+    
+    {
+      "link": "https://www.youtube.com/embed/7A-4-S_k_rk?si=WjlNgtA02yMpWw9i&rel=0",
+      "caption": "How to cook fish"
+    },
+    
+    {
+      "link": "https://www.youtube.com/embed/IQMp0m0xjIE?si=yBDv_-YxKSK7p-KJ&rel=0",
+      "caption": "How to make pasta/noodles at home"
+    },
+    
+    {
+      "link": "https://www.youtube.com/embed/2WDIBat-Jgo?si=0WF9olTTmYYjjo-n&rel=0",
+      "caption": "How to stirfry"
+    },
+    
+    {
+      "link": "https://www.youtube.com/embed/zogvMiPpQrs?si=jtQU58vMGRTM9SHL&rel=0",
+      "caption": "How to make a flatbread"
+    },
+    
+    {
+      "link": "https://www.youtube.com/embed/p53xab3c3tg?si=KCqTZNglleT0hBx-&rel=0",
+      "caption": "How to braise"
+    },
+    
+    {
+      "link": "https://www.youtube.com/embed/74tZ-yOOPy0?si=mIZAVSqJSyqOQaSt&rel=0",
+      "caption": "How to make stock"
+    }
+  ]
+}
