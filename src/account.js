@@ -1,4 +1,4 @@
-import renderNavbar from './src/navbar.js';
+import renderNavbar from '/WebdevTeam6/src/navbar.js';
 
 renderNavbar();
 

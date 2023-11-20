@@ -1,6 +1,5 @@
 export default function renderNavbar() {
   const nav = document.querySelector("nav");
-  console.log(nav);
   nav.innerHTML += `<div class="col-auto">
             <header>
               <ul>

@@ -1,5 +1,5 @@
-import renderNavbar from "./src/navbar.js";
-import renderVideos, { renderVideo } from "./src/videos.js";
+import renderNavbar from "/WebdevTeam6/src/navbar.js";
+import renderVideos, { renderVideo } from "/WebdevTeam6/src/videos.js";
 
 function renderStructure() {
      var content = document.querySelector("#content");
