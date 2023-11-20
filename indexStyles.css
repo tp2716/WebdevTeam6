@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #ff6600;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background-color: #ff6600;
+    color: #ffffff;
+    padding: 0.375rem 0.75rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.tryit {
+    background-color: #ff6600;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+#add {
+    background-color: #198754;
+}
+
+#remove-all {
+    background-color: #e61412;
+}
+
+.fridge-item h4{
+    margin-top:4px;
+    margin-bottom:8px;
+}
+
+.fridge-item button{
+    background-color: #ffaa50;
+}
+
+.search-item h4{
+    margin-top:4px;
+    margin-bottom:8px;
+}
+
+.my-card {
+    padding-left:0;
+    padding-right:0;
+}
+
+#search {
+    height: 46px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+/* Parallel view on >md devices */
+@media (min-width: 768px) {
+     .home-panel {
+        min-height: 18vh;
+    }
+}

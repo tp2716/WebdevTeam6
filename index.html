@@ -1,38 +1,97 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <h1>FatSecret API Data Fetch</h1>
-    <button id="fetchData">Fetch Test</button>
-    <pre id="apiResponse"></pre>
+<html lang="en">
+  <head>
+    <title>Tell me what to Cook!</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="exploreStyles.css" />
+    <link rel="stylesheet" href="indexStyles.css" />
+    <script src="./src/main.js" type="module"></script>
+    <script src="./src/fridgeHandler.js" type="module"></script>
+    <script src="./src/search.js" type="module"></script>
+    <script src="./src/cards.js" type="module"></script>
+    <script src="./src/navbar.js" type="module"></script>
+  </head>
 
-    <script>
-    var request = require("request");
-    clientID = '6843239d6bdf4bf3b6beb6da61ebca82'
-    clientSecret = '9b78f9f6159642c6a5497c65f53ad548'
+  <body>
+      <nav id="nav">
+        <div class="col-auto">
+            <header>
+              <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="explore.html">LEARN</a></li>
+                <li><a href="account.html">ACCOUNT</a></li>
+              </ul>
+            </header>
+          </div>
+      </nav>
 
-    var options = {
-       method: 'POST',
-       url: 'https://oauth.fatsecret.com/connect/token',
-       method : 'POST',
-       auth : {
-          user : clientID,
-          password : clientSecret
-       },
-       headers: { 'content-type': 'application/x-www-form-urlencoded'},
-       form: {
-          'grant_type': 'client_credentials',
-          'scope' : 'basic'
-       },
-       json: true
-    };
+    <main>
 
-    request(options, function (error, response, body) {
-       if (error) throw new Error(error);
-       console.log(body);
-    });
-    </script>
-</body>
+      <div class="home-panel container-fluid d-flex align-items-center justify-content-center">
+          <div class="row w-100">
+            <div class="left-panel col-md-6 pb-3 border-end">
+              <h2>Your Fridge Items:</h2>
+              <div class="row mt-3 mb-3" id="fridge-items"></div>
+              <form class="form-row" action="" id="fridge-form">
+                <div class="row">
+                  <div class="col-12 col-md-auto">
+                    <input type="text" class="form-control" placeholder="Fridge Items Here: ">
+                  </div>
+                  <div class="col-12 col-md-auto mt-3 mt-md-0">
+                    <button type="submit" class="add me-1" id="add">Add</button>
+                    <button type="submit" class="remove-all" id="remove-all">Remove All</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="right-panel col-md-6 pb-3 border-end">
+              <h2>Searching With:</h2>
+              <div class="row mt-3 mb-3" id="search-items"></div>
+            </div>
+          </div>
+      </div>
+
+      <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="row w-100">
+            <div class="search-panel col-md-6 border-end">
+              <h2>Search Params:</h2>
+              <div class="row mt-1 mb-1" id="search-params">
+                <div class="col-auto col-md-4">
+                  <input class="form-check-input" type="checkbox" id="keep-result"/>
+                  <label class="form-check-label" for="keep-result">keep result</label>
+                </div>
+                <div class="col-auto col-sm-6 col-md-5 col-lg-6">
+                  <!--<input class="form-check-input" type="checkbox" id=""></input>-->
+                  <label class="form-check-label">TODO: implement search restrictions</label>
+                </div>
+              </div>
+            </div>
+            <div class="search-params-panel col-md-6 border-end d-flex justify-content-center align-items-center">
+              <button type="submit" href="/#pre" class="btn btn-primary me-1" id="search">Search</button>
+            </div>
+        </div>
+      </div>
+
+      <div class="container-fluid justify-content-center pt-5" id="pre">
+        <div class="col-12 d-flex justify-content-center">
+          <hr class="col-12 col-md-12 pe-5 mb-3">
+        </div>
+        <div class="row justify-content-center" id="cards">
+
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
