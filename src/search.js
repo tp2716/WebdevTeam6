@@ -1,4 +1,4 @@
-import renderCards, {renderCard} from '../src/cards.js';
+import renderCards, {renderCard} from 'src/cards.js';
 
 export default function addSearchItem(item) {
     if(!document.querySelector('#search-items #'+item)) {
