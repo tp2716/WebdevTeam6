@@ -1,4 +1,4 @@
-import addSearchItem, {removeSearchItem, searchRecipe} from "./src/search.js";
+import addSearchItem, {removeSearchItem, searchRecipe} from "../src/search.js";
 
 document.addEventListener('DOMContentLoaded', function() {
     var form = document.querySelector('form');
