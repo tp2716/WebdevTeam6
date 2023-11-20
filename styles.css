@@ -27,6 +27,10 @@ nav ul li {
   padding: 25px;
 }
 
+nav a {
+  transition: color 0.3s ease-in-out;
+}
+
 a:link {
   color: #000000;
   text-decoration: none;
