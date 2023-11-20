@@ -1,4 +1,3 @@
-
 var page = window.location.pathname;
 var script = document.createElement('script');
 var pathPrefix = '/WebdevTeam6';
