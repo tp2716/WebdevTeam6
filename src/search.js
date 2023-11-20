@@ -14,7 +14,7 @@ export default function addSearchItem(item) {
         newItem.innerHTML =
         `<div class="d-flex justify-content-between align-items-center">
             <h4>${item}</h4>
-            <i class="bi bi-dash-circle-dotted"></i>
+            <i class="bi bi-dash-circle"></i>
         </div>`;
 
         itemCol.appendChild(newItem);

@@ -24,7 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 newItem.setAttribute('href', '#');
                 newItem.setAttribute('id', item)
                 newItem.addEventListener("click", () => addSearchItem(item), false);
-                newItem.innerHTML = `<h4>${item}</h4>`;
+                newItem.innerHTML = `<div class="d-flex justify-content-between align-items-center">
+                    <h4>${item}</h4>
+                    <i class="bi bi-plus-circle"></i>
+                </div>`;
 
                 itemCol.appendChild(newItem);
                 fridgeItems.appendChild(itemCol);
