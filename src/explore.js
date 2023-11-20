@@ -23,7 +23,7 @@ function renderExplore() {
         </div>`;
 }
 
-fetch("/src/techniques.json")
+fetch("/WebdevTeam6/src/techniques.json")
     .then((response) => {
       return response.json();
     })

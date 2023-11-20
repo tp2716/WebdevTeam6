@@ -2,7 +2,7 @@ var page = window.location.pathname;
 var script = document.createElement('script');
 var pathPrefix = '/WebdevTeam6';
 
-if (page === pathPrefix+'/index.html') {
+if (page === pathPrefix+'/index.html' || page === pathPrefix+'/' || page === pathPrefix+'') {
     script.type = 'module';
     script.src = '/WebdevTeam6/src/index.js';
     script.defer = true;
