@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         var searchItems = document.querySelector('#search-items');
-        if(searchItems) {
+        if(searchItems && searchItems.textContent.trim().length > 0) {
             var searchArray = [];
             document.querySelectorAll('#search-items h4').forEach(function(i) {
                 searchArray.push(i.textContent);

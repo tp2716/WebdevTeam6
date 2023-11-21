@@ -33,26 +33,36 @@ export function removeSearchItem(itemCol) {
 export function searchRecipe(items) {
     // first check if previous results are stored in user's local cache
     let userCache = window.localStorage.getItem(items);
-    if (userCache) {
-        if (document.querySelector('#keep-result').checked) {
-            document.querySelector('#cards').innerHTML += renderCards(shuffleJson(JSON.parse(userCache)));
-        } else {
-            document.querySelector('#cards').innerHTML = renderCards(shuffleJson(JSON.parse(userCache)));
-        }
-    } else {
-        // make API call
+    // make API call
+    if (!userCache || userCache.length<=2) { // <=2 since userCache is stringified array
         makeCorsRequest(items.join(' ')).then((response) => {
             let recipeJson = parseRecipeJson(JSON.stringify(response));
-            window.localStorage.setItem(items, JSON.stringify(recipeJson));
+            let leftOver;
+            [recipeJson, leftOver] = shuffleJson(recipeJson);
+            window.localStorage.setItem(items, JSON.stringify(leftOver));
             if (document.querySelector('#keep-result').checked) {
-                document.querySelector('#cards').innerHTML += renderCards(shuffleJson(recipeJson));
+                document.querySelector('#cards').innerHTML += renderCards(recipeJson);
+                removeLoading();
             } else {
-                document.querySelector('#cards').innerHTML = renderCards(shuffleJson(recipeJson));
+                document.querySelector('#cards').innerHTML = renderCards(recipeJson);
+                removeLoading();
             }
         }).catch((error) => {
-            document.querySelector('#cards').innerHTML = 'Loading Failed';
+            appendLoading('Loading Failed');
             console.error(error);
         });
+    } else {
+        let recipeJson = JSON.parse(userCache);
+        let leftOver;
+        [recipeJson, leftOver] = shuffleJson(recipeJson);
+        window.localStorage.setItem(items, JSON.stringify(leftOver));
+        if (document.querySelector('#keep-result').checked) {
+            document.querySelector('#cards').innerHTML += renderCards(recipeJson);
+            removeLoading();
+        } else {
+            document.querySelector('#cards').innerHTML = renderCards(recipeJson);
+            removeLoading();
+        }
     }
 }
 
@@ -62,7 +72,7 @@ function parseRecipeJson(stringifiedJson){
     parsed = parsed.hits;
 
     // repopulate JSON with only parameters we wanted
-    const remappedJson = parsed.map(item => ({
+    let remappedJson = parsed.map(item => ({
         name: item.recipe.label,
         image: item.recipe.image,
         instruction: item.recipe.url,
@@ -79,19 +89,21 @@ function parseRecipeJson(stringifiedJson){
 }
 
 // given recipeJson, return 4 shuffled recipes or the number of recipes if less
+// leftOver returned to be stored for next time
 function shuffleJson(remappedJson) {
     let count = remappedJson.length;
     let shuffled = remappedJson.sort(() => 0.5 - Math.random());
     remappedJson = shuffled.slice(0, count>4?4:count);
-    return remappedJson;
+    let leftOver = shuffled.slice(count>4?4:count);
+    return [remappedJson, leftOver];
 }
 
 // Make the actual CORS request.
 function makeCorsRequest(query) {
-  document.querySelector('#cards').innerHTML = 'Loading...';
+  appendLoading('Loading...');
 
   return new Promise((resolve, reject) => {
-    var url = 'https://api.edamam.com/api/recipes/v2?type=any&app_id=47a14aa1&app_key=5f6e4fae1531f227d8a74ee073ef6c6f&q=' + query;
+    var url = 'https://api.edamam.com/api/recipes/v2?type=any&app_id=47a14aa1&app_key=5f6e4fae1531f227d8a74ee073ef6c6f&q=' + query + '&random=true';
 
     var xhr = createCORSRequest('GET', url);
     if (!xhr) {
@@ -115,6 +127,14 @@ function makeCorsRequest(query) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(query);
   });
+}
+
+function appendLoading(message) {
+    document.querySelector('#loading').innerHTML = `${message}`;
+}
+
+function removeLoading() {
+    document.querySelector('#loading').innerHTML = '';
 }
 
 // Create the XHR object.
