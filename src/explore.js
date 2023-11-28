@@ -9,7 +9,6 @@ function renderStructure() {
 
 function renderExplore() {
     const content = document.querySelector("#body");
-    console.log(content);
     content.innerHTML +=
         `<div class="col-md-12">
             <div>
