@@ -1,15 +1,14 @@
-import renderNavbar from "/WebdevTeam6/src/navbar.js";
-import renderVideos, { renderVideo } from "/WebdevTeam6/src/videos.js";
+import renderNavbar from "./navbar.js";
+import renderVideos, { renderVideo } from "./videos.js";
 
 function renderStructure() {
-     var content = document.querySelector("#content");
-     content.classList.add('container', 'text-center');
-     content.innerHTML +=
-        `<div class="row" id = "body"></div>`;
+    const content = document.querySelector("main");
+    content.classList.add('container', 'text-center');
+    content.innerHTML += `<div id = "content"><div class="row" id = "body"></div></div>`;
 }
 
 function renderExplore() {
-    var content = document.querySelector("#body");
+    const content = document.querySelector("#body");
     console.log(content);
     content.innerHTML +=
         `<div class="col-md-12">
