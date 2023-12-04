@@ -210,7 +210,6 @@ let paramsModified = true;
 export function queryParamsChangeState() {
     const currentState = paramsModified;
     paramsModified = false; // Reset the state after querying
-    console.log('change:'+currentState);
     return currentState;
 }
 

@@ -76,8 +76,6 @@ export function saveToLocalStorage(recipe) {
     }
     recipeCache = JSON.parse(window.localStorage.getItem('recipeCache'));
     if (!recipeCache.some(item => item.name === recipe.name)) {
-        console.log('local: '+recipeCache);
-        console.log(recipe);
         recipeCache.push(recipe);
         window.localStorage.setItem('recipeCache', JSON.stringify(recipeCache));
     }

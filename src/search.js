@@ -115,8 +115,6 @@ function parseRecipeJson(stringifiedJson){
     let parsed = JSON.parse(stringifiedJson);
     parsed = parsed.hits;
 
-    console.log('parsed:'+parsed);
-
     // repopulate JSON with only parameters we wanted
     return parsed.map(item => ({
         name: item.recipe.label,
