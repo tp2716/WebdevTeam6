@@ -25,7 +25,7 @@ export function renderCard(recipeJson) {
             <h5 class="card-title">${recipeJson.name}</h5>
             ${
                 recipeJson.cautions !== "None" && !document.getElementById('hide-cautions').checked ? 
-                `<div class=""><p class="card-text-caution">Caution:${recipeJson.cautions.join(", ")}</p></div>` : ""
+                `<div class=""><p class="card-text-caution">Caution: ${recipeJson.cautions.join(", ")}</p></div>` : ""
             }
             <div class="row card-text"><p class=""><b>Ingredients</b>: ${ingredientsText}</p></div>
             <div class="row card-text"><p class=""><b>Calories</b>: ${recipeJson.calories} Kcal</p></div>
