@@ -13,7 +13,7 @@ window.addEventListener('storage', function(event) {
     }
 });
 
-fetch("../recipes/tabatkins.json")
+fetch("/WebdevTeam6/recipes/tabatkins.json")
     .then((response) => {
         return response.json();
     })
