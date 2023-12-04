@@ -1,64 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cooking App - Account Page</title>
-    <link rel="stylesheet" href="accountStyles.css" />
-    <script src="/src/Account.js" defer type="module"></script>
-    <script src="/src/Navbar.js" defer type="module"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/accountStyles.css">
+    <script src="/WebdevTeam6/src/index.js" type="module"></script>
   </head>
   <body>
-    <nav></nav>
+  <nav></nav>
 
-    <main>
-      <section class="account">
-        <h2>My Account</h2>
+  <main>
+    <section class="account">
+      <h2>My Account</h2>
 
-        <div class="profile">
-          <img
-            src="https://cdn.glitch.global/1332c0f6-a6bb-4b31-b54a-e78fc639b9c6/flat%2C750x%2C075%2Cf-pad%2C750x1000%2Cf8f8f8.jpg?v=1700238684341"
-            alt="Profile Picture"
-            class="profile-picture"
-          />
-          <p><span id="username">little_chef</span></p>
-        </div>
+      <div class="profile">
+        <img
+                src="https://cdn.glitch.global/1332c0f6-a6bb-4b31-b54a-e78fc639b9c6/flat%2C750x%2C075%2Cf-pad%2C750x1000%2Cf8f8f8.jpg?v=1700238684341"
+                alt="Profile Picture"
+                class="profile-picture"
+        />
+        <p><span id="username">little_chef</span></p>
+      </div>
 
-        <div class="search-container">
-          <label for="search-bar">Search Recipes:</label>
-          <input type="text" id="search-bar" placeholder="Enter recipe name, click to save" />
-        </div>
-        <div class="search-results">
-          <ul id="search-results-list"></ul>
-        </div>
+      <div class="search-container">
+        <label for="search-bar">Search Recipes:</label>
+        <input type="text" id="search-bar" placeholder="Enter recipe name, click to save" />
+      </div>
+      <div class="search-results">
+        <ul id="search-results-list"></ul>
+      </div>
 
-        <div class="saved-recipes">
-          <h3>Saved Recipes:</h3>
-          <ul>
-            <!-- add recipes selected from search -->
-          </ul>
-        </div>
-        
-        <div id="recipe-details-content"><strong>Select a Saved Recipe to See Details:</strong></div>
-        
-        <div class="grocery-list">
-          <h3>Create Grocery List</h3>
-          <form id="grocery-form" action="#" method="post">
-            <div class="form-group">
-              <label for="grocery-item">Add Item to List</label>
-              <input
-                type="text"
-                id="grocery-item"
-                name="grocery-item"
-                placeholder="E.g., Tomatoes"
-              />
-            </div>
-            <button type="submit">Add to List</button>
-          </form>
-          <ul id="grocery-items"></ul>
-        </div>
-      </section>
-    </main>
+      <div class="saved-recipes">
+        <h3>Saved Recipes:</h3>
+        <ul>
+          <!-- add recipes selected from search -->
+        </ul>
+      </div>
+
+      <div id="recipe-details-content"><strong>Select a Saved Recipe to See Details:</strong></div>
+
+      <div class="grocery-list">
+        <h3>Create Grocery List</h3>
+        <form id="grocery-form">
+          <div class="form-group">
+            <label for="grocery-item">Add Item to List</label>
+            <input
+                    type="text"
+                    id="grocery-item"
+                    name="grocery-item"
+                    placeholder="E.g., Tomatoes"
+            />
+          </div>
+          <button href='#' id='grocery-button'>Add to List</button>
+        </form>
+        <ul id="grocery-items"></ul>
+      </div>
+    </section>
+  </main>
   </body>
 </html>
-
