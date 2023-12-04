@@ -13,6 +13,22 @@ window.addEventListener('storage', function(event) {
     }
 });
 
+document.getElementById("grocery-button").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const newItemText = document.getElementById("grocery-item").value.trim();
+
+    if (newItemText !== "") {
+        const newItem = document.createElement("li");
+        newItem.textContent = newItemText;
+
+        document.getElementById("grocery-items").appendChild(newItem);
+
+        // Clear the input field after adding the item
+        document.getElementById("grocery-item").value = "";
+    }
+});
+
 fetch("/WebdevTeam6/recipes/tabatkins.json")
     .then((response) => {
         return response.json();
@@ -153,27 +169,3 @@ fetch("/WebdevTeam6/recipes/tabatkins.json")
         });
 
     });
-
-//grocery list
-document.addEventListener("DOMContentLoaded", function () {
-
-    const form = document.getElementById("grocery-form");
-    const input = document.getElementById("grocery-item");
-    const list = document.getElementById("grocery-items");
-
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const newItemText = input.value.trim();
-
-        if (newItemText !== "") {
-            const newItem = document.createElement("li");
-            newItem.textContent = newItemText;
-
-            list.appendChild(newItem);
-
-            // Clear the input field after adding the item
-            input.value = "";
-        }
-    });
-});
