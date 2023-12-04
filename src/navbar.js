@@ -5,7 +5,7 @@ export default function renderNavbar() {
               <ul>
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="explore.html">LEARN</a></li>
-                <li><a href="account.html">ACCOUNT</a></li>
+                <li><a href="account.html" target="_blank">ACCOUNT</a></li>
               </ul>
             </header>
           </div>`;

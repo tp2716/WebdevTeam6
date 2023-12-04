@@ -5,7 +5,7 @@ body {
 }
 
 header {
-    background-color: #ff6600;
+    background-color: #ee3300;
     color: #ffffff;
     padding: 20px;
     display: flex;
@@ -24,17 +24,39 @@ button {
 
 .tryit {
     background-color: #ff6600;
-    color: #ffffff;
+    color: #fdfdfd;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
 }
 
-#add {
-    background-color: #198754;
+.tryit:hover {
+    background-color: #ff4400;
+    color: #ffffff;
 }
 
-#remove-all {
+.save-recipes {
+    background-color: #ffaa50;
+    color: #fdfdfd;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.save-recipes:hover {
+    background-color: #ff9930;
+    color: #ffffff;
+}
+
+.add {
+    background-color: #ff6600;
+}
+
+.remove-all {
     background-color: #e61412;
+    padding: 0.375rem 0.5rem;
+}
+
+.search {
+    background-color: #ff6600;
 }
 
 .fridge-item h4{
@@ -51,12 +73,54 @@ button {
     margin-bottom:6px;
 }
 
+.search-params-line {
+    align-items: center;
+}
+
+.dropdown-menu {
+    z-index: 1500;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.delete-param-icon {
+    font-size: 12px;
+}
+
+.param-selection {
+    background-color: #e2e2e2;
+    color: #000000;
+    padding: 0.3rem 0.55rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.param-text {
+    margin-bottom: 0;
+}
+
 .my-card {
     padding-left:0;
     padding-right:0;
 }
 
-#search {
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-text-caution {
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ffcc00;
+    background-color: #fff4e5;
+    border-radius: 5px;
+    color: #d35400;
+    font-weight: bold;
+}
+
+.search {
     height: 42px;
     padding-top:0px;
     padding-bottom:0px;

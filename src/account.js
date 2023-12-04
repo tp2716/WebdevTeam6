@@ -1,64 +1,179 @@
-import renderNavbar from './navbar.js';
+import renderNavbar from "./navbar.js";
+import {saveToLocalStorage} from "./cards.js";
 
-function renderStructure() {
-    renderNavbar();
-    renderAccount();
-}
+renderNavbar();
 
-function renderAccount() {
-    document.querySelector('main').innerHTML += `
-    <section class="account">
-            <h2>My Account</h2>
+window.addEventListener('storage', function(event) {
+    if (event.key === 'refresh' && event.newValue === 'true') {
+        // Refresh the page
+        location.reload();
 
-            <div class="profile">
-                <img src="https://cdn.glitch.global/1332c0f6-a6bb-4b31-b54a-e78fc639b9c6/flat%2C750x%2C075%2Cf-pad%2C750x1000%2Cf8f8f8.jpg?v=1700238684341" alt="Profile Picture" class="profile-picture">
-                <p><span id="username">Username Placeholder</span></p>
-            </div>
+        // Reset the value
+        localStorage.setItem('refresh', 'false');
+    }
+});
 
-            <div class="saved-recipes">
-                <h3>Saved Recipes</h3>
+fetch("../recipes/tabatkins.json")
+    .then((response) => {
+        return response.json();
+    })
+    .then((recipes) => {
+        renderSavedRecipes();
+
+        const savedRecipesList = document.querySelector(".saved-recipes ul");
+
+        savedRecipesList.addEventListener("click", function (event) {
+            if (event.target.tagName === "LI") {
+                // Get the clicked recipe name
+                const clickedRecipeName = event.target.textContent;
+
+                // Find the corresponding recipe in the recipes data
+                const clickedRecipe = Object.values(recipes).find(
+                    (recipe) => recipe.name === clickedRecipeName
+                );
+
+                const recipeCache = JSON.parse(window.localStorage.getItem('recipeCache'));
+
+                // Render the details for the clicked recipe
+                if (clickedRecipe) {
+                    renderRecipeDetails(clickedRecipe);
+                } else if (recipeCache !== null && recipeCache.length !== 2) {
+                    const clickedRecipe = Object.values(recipeCache).find(
+                        (item) => item.name === clickedRecipeName
+                    );
+                    renderRecipeDetails(clickedRecipe);
+                }
+            }
+        });
+
+        function renderSavedRecipes() {
+            const recipeCache = JSON.parse(window.localStorage.getItem('recipeCache'));
+            if (recipeCache !== null && recipeCache.length !== 2) {
+                recipeCache.forEach(item => {
+                    const savedRecipesList = document.querySelector(".saved-recipes ul");
+                    const savedRecipeItem = document.createElement("li");
+                    savedRecipeItem.textContent = item.name;
+                    savedRecipesList.appendChild(savedRecipeItem);
+                });
+            }
+        }
+
+        function searchRecipes(query, maxResults = 5) {
+            const searchResults = document.getElementById("search-results-list");
+            const savedRecipesList = document.querySelector(".saved-recipes ul");
+            const recipeDetailsContent = document.getElementById(
+                "recipe-details-content"
+            );
+
+            // Clear search results if the query is empty
+            if (query.trim() === "") {
+                searchResults.innerHTML = "";
+                return;
+            }
+            // Clear previous search results
+            searchResults.innerHTML = "";
+
+            // Counter to keep track of displayed results
+            let resultsCount = 0;
+
+            // Iterate through recipes
+            for (const recipeId in recipes) {
+                const recipe = recipes[recipeId];
+
+                // Check if the recipe name contains the search query
+                if (
+                    resultsCount < maxResults &&
+                    recipe.name.toLowerCase().includes(query.toLowerCase())
+                ) {
+                    // Add the recipe to the search results
+                    const listItem = document.createElement("li");
+                    listItem.textContent = recipe.name;
+
+                    // Add click event to add the recipe to the saved recipes list
+                    listItem.addEventListener("click", () => {
+                        const savedRecipeItem = document.createElement("li");
+                        savedRecipeItem.textContent = recipe.name;
+                        const savedRecipes = document.querySelectorAll(".saved-recipes ul li");
+                        const matches = Array.from(savedRecipes).filter(li =>
+                            li.textContent.includes(savedRecipeItem.textContent));
+                        if (matches.length === 0) {
+                            savedRecipesList.appendChild(savedRecipeItem);
+                            saveToLocalStorage(recipe);
+                        }
+                    });
+
+                    searchResults.appendChild(listItem);
+                    resultsCount++;
+                }
+            }
+        }
+
+        function renderRecipeDetails(recipe) {
+            const recipeDetailsContent = document.getElementById(
+                "recipe-details-content"
+            );
+
+            recipeDetailsContent.innerHTML = `
+                <h3>${recipe.name}</h3>
+                <p>Source: ${recipe.source}</p>
+                ${ recipe.cooktime&& recipe.cooktime !== '0' && recipe.cooktime !== 'None' ?
+                    `<p>Cook Time: ${recipe.cooktime} minutes</p>` : ''
+                }
+                ${ recipe.preptime && recipe.preptime !== '0' ?
+                    `<p>Prep Time: ${recipe.preptime} minutes</p>` : ''
+                }
+                ${ recipe.calories && recipe.calories !== '0' ?
+                    `<p>Calories: ${recipe.calories} Kcal</p>` : ''
+                }
+                ${ recipe.cautions && recipe.cautions !== '' ?
+                    `<p>Cautions: ${recipe.cautions}</p>` : ''
+                }
+                ${ recipe.comments !== null && recipe.comments !== '' ?
+                    `<p>Comments: ${recipe.comments}</p>` : ''
+                }
+            
+                <!-- Add more details as needed -->
+                <h4>Ingredients:</h4>
                 <ul>
-                    <li>Bacon Cheeseburger...</li>
-                    <li>Fettuccine Alfredo...</li>
-                    <li>Fried Rice...</li>
+                  ${recipe.ingredients
+                .map((ingredient) => `<li>${ingredient.replace(/\r|\n|<hr>/g, '')}</li>`)
+                .join("")}
                 </ul>
-            </div>
+                ${recipe.instructions !== null && recipe.instructions !== '' ?
+                    `<h4>Instructions:</h4>
+                    <p>${recipe.instructions}</p>` : ''
+                }`;
+        }
 
-            <div class="grocery-list">
-                <h3>Create Grocery List</h3>
-                <form id="grocery-form" action="#" method="post">
-                    <div class="form-group">
-                        <label for="grocery-item">Add Item to List</label>
-                        <input type="text" id="grocery-item" name="grocery-item" placeholder="E.g., Tomatoes">
-                    </div>
-                    <button type="submit">Add to List</button>
-                </form>
-                <ul id="grocery-items"></ul>
-            </div>
-        </section>`;
-}
+        // Example: Trigger the search function when user types in the search bar
+        const searchBar = document.getElementById("search-bar");
+        searchBar.addEventListener("input", function () {
+            const query = this.value.trim();
+            searchRecipes(query);
+        });
 
-renderStructure();
+    });
 
 //grocery list
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('grocery-form');
-    const input = document.getElementById('grocery-item');
-    const list = document.getElementById('grocery-items');
+document.addEventListener("DOMContentLoaded", function () {
 
-    form.addEventListener('submit', function (event) {
+    const form = document.getElementById("grocery-form");
+    const input = document.getElementById("grocery-item");
+    const list = document.getElementById("grocery-items");
+
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
 
         const newItemText = input.value.trim();
 
-        if (newItemText !== '') {
-            const newItem = document.createElement('li');
+        if (newItemText !== "") {
+            const newItem = document.createElement("li");
             newItem.textContent = newItemText;
 
             list.appendChild(newItem);
 
             // Clear the input field after adding the item
-            input.value = '';
+            input.value = "";
         }
     });
 });
