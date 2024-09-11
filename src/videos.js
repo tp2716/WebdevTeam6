@@ -1,5 +1,5 @@
 export default function renderVideos(videos) {
-  return `${videos.map((v) => renderVideo(v)).join("")}`;
+  return `${videos.map((v) => renderVideo(v)).join("")}`
 }
 
 export function renderVideo(vid) {
