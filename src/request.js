@@ -4,7 +4,8 @@ export default function makeCorsRequest(query) {
   return fetch(proxy+encodeURIComponent('https://api.edamam.com/api/recipes/v2?type=any&app_id=47a14aa1&app_key=5f6e4fae1531f227d8a74ee073ef6c6f&q=' + query + '&random=true'), {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'access-control-allow-origin': '*'
     }
   })
 }
